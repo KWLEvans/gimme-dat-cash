@@ -5,6 +5,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Project } from './../project.model';
 import { ProjectTileComponent } from './../project-tile/project-tile.component';
 import { ProjectService } from './../project.service';
+import { GoalPipe } from './../goal.pipe';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,24 @@ import { ProjectService } from './../project.service';
 })
 export class HomeComponent {
 
-  projects: FirebaseListObservable<any[]>;
+  projects: Project[] = [];
+  sortValue: string = "all";
 
   constructor(private projectService: ProjectService, private router: Router) {
-    this.projects = this.projectService.getProjects();
+    this.projectService.getProjects().subscribe(projectArray => {
+      projectArray.forEach(project => {
+        let newProject = new Project(project.name, project.description, project.owners, project.goal, project.rewards, project.currentAmount, project.$key);
+        this.projects.push(newProject);
+      })
+    });
+  }
+
+  setSortValue(value: string) {
+    this.sortValue = value;
   }
 
   goToDetailPage(clickedProject) {
-    this.router.navigate(['projects', clickedProject.$key])
+    this.router.navigate(['projects', clickedProject.id])
   }
 
 }

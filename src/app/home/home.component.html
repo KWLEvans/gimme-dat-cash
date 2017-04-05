@@ -1,1 +1,3 @@
-<app-project-tile *ngFor = 'let project of projects | async' [project] = 'project' (click)="goToDetailPage(project)"></app-project-tile>
+<button (click)="setSortValue($event.target.value)" value="high" class="btn btn-danger">HIGH VALUE</button>
+<button (click)="setSortValue($event.target.value)" value="low" class="btn btn-success">LOW VALUE</button>
+<app-project-tile *ngFor = 'let project of projects | goal:sortValue' [project] = 'project' (click)="goToDetailPage(project)"></app-project-tile>

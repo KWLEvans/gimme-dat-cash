@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ProjectTileComponent } from './project-tile/project-tile.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { GoalPipe } from './goal.pipe';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -23,7 +24,8 @@ export const firebaseConfig = {
     AppComponent,
     ProjectTileComponent,
     HomeComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    GoalPipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{(project | async)?.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li><h4>Owners:</h4>
+          <ul>
+            <li *ngFor='let owner of (project | async)?.owners'>{{owner}}</li>
+          </ul>
+        </li>
+        <li>{{(project | async)?.description}}</li>
+        <li>{{(project | async)?.currentAmount}}/{{(project | async)?.goal}}</li>
+        <li><h4>Rewards:</h4>
+          <ul>
+            <li *ngFor='let reward of (project | async)?.rewards'>{{reward}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

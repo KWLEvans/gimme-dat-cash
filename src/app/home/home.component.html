@@ -1,0 +1,1 @@
+<app-project-tile *ngFor = 'let project of projects | async' [project] = 'project' (click)="goToDetailPage(project)"></app-project-tile>

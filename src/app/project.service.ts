@@ -22,6 +22,10 @@ export class ProjectService {
     this.projects.push(project);
   }
 
+  deleteProject(projectId: string) {
+    this.getProjectById(projectId).remove();
+  }
+
   update(localUpdatedProject: Project) {
     let albumEntryInFirebase = this.getProjectById(localUpdatedProject.id);
     albumEntryInFirebase.update({currentAmount: localUpdatedProject.currentAmount,

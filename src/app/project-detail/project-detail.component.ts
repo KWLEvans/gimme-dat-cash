@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Project } from './../project.model';
@@ -15,7 +16,7 @@ export class ProjectDetailComponent implements OnInit {
   project;
   amountToAdd: number;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private projectService: ProjectService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
   ngOnInit() {
     this.route.params.forEach((urlParameters) => {
@@ -32,6 +33,11 @@ export class ProjectDetailComponent implements OnInit {
     projectObject.currentAmount += this.amountToAdd;
     this.amountToAdd = null;
     this.projectService.update(projectObject);
+  }
+
+  delete() {
+    this.projectService.deleteProject(this.projectId);
+    this.router.navigate(['']);
   }
 
 }

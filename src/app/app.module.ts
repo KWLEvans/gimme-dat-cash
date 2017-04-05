@@ -11,6 +11,7 @@ import { ProjectTileComponent } from './project-tile/project-tile.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { GoalPipe } from './goal.pipe';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -25,7 +26,8 @@ export const firebaseConfig = {
     ProjectTileComponent,
     HomeComponent,
     ProjectDetailComponent,
-    GoalPipe
+    GoalPipe,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,

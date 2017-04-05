@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Project } from './../project.model';
 import { ProjectService } from './../project.service';
 
 @Component({
@@ -10,16 +11,27 @@ import { ProjectService } from './../project.service';
   providers: [ProjectService]
 })
 export class ProjectDetailComponent implements OnInit {
+  projectId: string;
   project;
+  amountToAdd: number;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
-    let projectId;
     this.route.params.forEach((urlParameters) => {
-      projectId = urlParameters['id'];
+      this.projectId = urlParameters['id'];
     });
-    this.project = this.projectService.getProjectById(projectId);
+    this.project = this.projectService.getProjectById(this.projectId);
+  }
+
+  fund() {
+    let projectObject: Project;
+    this.project.subscribe(project => {
+      projectObject = new Project(project.name, project.owners, project.description, project.goal, project.rewards, project.currentAmount, project.$key);
+    });
+    projectObject.currentAmount += this.amountToAdd;
+    this.amountToAdd = null;
+    this.projectService.update(projectObject);
   }
 
 }

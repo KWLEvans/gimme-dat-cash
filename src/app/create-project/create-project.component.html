@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add New Project!</h3>
+  </div>
+  <div class="panel-body">
+    <label>Project Name</label>
+    <input #newName>
+
+    <label>Description</label>
+    <input #newDescription>
+
+    <label>Owners</label>
+    <input #newOwner>
+    <button (click)="addOwner(newOwner.value); newOwner.value='';">Add Owner</button>
+    <div *ngIf="owners">
+      <h4>Owners:</h4>
+      <ul>
+        <li *ngFor="let owner of owners">{{owner}}</li>
+      </ul>
+    </div>
+
+    <label>Goal</label>
+    <input #newGoal>
+
+    <label>Rewards</label>
+    <input #newReward>
+    <button (click)="addReward(newReward.value); newReward.value='';">Add Reward</button>
+    <div *ngIf="rewards">
+      <h4>Rewards:</h4>
+      <ul>
+        <li *ngFor="let reward of rewards">{{reward}}</li>
+      </ul>
+    </div>
+
+    <button (click)="submitForm(newName.value, newDescription.value, newGoal.value); newName.value=''; newDescription.value=''; newGoal.value='';">Add</button>
+</div>
+</div>

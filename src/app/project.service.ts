@@ -21,4 +21,15 @@ export class ProjectService {
   saveProject(project: Project) {
     this.projects.push(project);
   }
+
+  update(localUpdatedProject: Project) {
+    let albumEntryInFirebase = this.getProjectById(localUpdatedProject.id);
+    albumEntryInFirebase.update({currentAmount: localUpdatedProject.currentAmount,
+                                name: localUpdatedProject.name,
+                                description: localUpdatedProject.description,
+                                owners: localUpdatedProject.owners,
+                                goal: localUpdatedProject.goal,
+                                rewards: localUpdatedProject.rewards
+                                });
+  }
 }

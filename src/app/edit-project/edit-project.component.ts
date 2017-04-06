@@ -11,7 +11,7 @@ import { ProjectService } from './../project.service';
 })
 export class EditProjectComponent implements OnInit {
 
-  @Input() project: Project;
+  @Input() project;
   editMode: boolean = false;
 
   constructor(private projectService: ProjectService, private router: Router) { }
@@ -27,10 +27,9 @@ export class EditProjectComponent implements OnInit {
     this.project.rewards.push(reward);
   }
 
-  submitForm() {
-    this.projectService.update(this.project);
+  submitForm(project) {
+    this.projectService.update(project);
     this.setEditMode(false);
-    this.router.navigate(['projects', this.project.id]);
   }
 
   setEditMode(value: boolean) {

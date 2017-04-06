@@ -25,14 +25,14 @@ export class ProjectDetailComponent implements OnInit {
     this.project = this.projectService.getProjectById(this.projectId);
   }
 
-  fund() {
+  fund(project) {
     let projectObject: Project;
-    this.project.subscribe(project => {
+    project.subscribe(project => {
       projectObject = new Project(project.name, project.owners, project.description, project.goal, project.rewards, project.currentAmount, project.$key);
     });
     projectObject.currentAmount += this.amountToAdd;
     this.amountToAdd = null;
-    this.projectService.update(projectObject);
+    this.projectService.updateFunding(projectObject);
   }
 
   delete() {

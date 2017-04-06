@@ -26,8 +26,8 @@ export class ProjectService {
     this.getProjectById(projectId).remove();
   }
 
-  update(localUpdatedProject: Project) {
-    let albumEntryInFirebase = this.getProjectById(localUpdatedProject.id);
+  update(localUpdatedProject) {
+    let albumEntryInFirebase = this.getProjectById(localUpdatedProject.$key);
     albumEntryInFirebase.update({currentAmount: localUpdatedProject.currentAmount,
                                 name: localUpdatedProject.name,
                                 description: localUpdatedProject.description,
@@ -35,5 +35,10 @@ export class ProjectService {
                                 goal: localUpdatedProject.goal,
                                 rewards: localUpdatedProject.rewards
                                 });
+  }
+
+  updateFunding(localUpdatedProject) {
+    let albumEntryInFirebase = this.getProjectById(localUpdatedProject.id);
+    albumEntryInFirebase.update({currentAmount: localUpdatedProject.currentAmount});
   }
 }

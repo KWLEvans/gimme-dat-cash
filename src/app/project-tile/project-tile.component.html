@@ -1,7 +1,11 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">{{project.name}}</h3>
+      <h3 class="panel-title" (click)="goToDetailPage(project)">{{project.name}}</h3>
+    </div>
+    <div *ngIf="this.currentRoute === '/admin'" class="panel-body">
+      <p>{{project.description}}</p>
+      <app-edit-project [project]="project"></app-edit-project>
     </div>
   </div>
 </div>

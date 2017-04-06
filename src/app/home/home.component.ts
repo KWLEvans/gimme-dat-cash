@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
@@ -14,24 +14,17 @@ import { GoalPipe } from './../goal.pipe';
 })
 export class HomeComponent {
 
-  projects: Project[] = [];
+  projects: FirebaseListObservable<any[]>;
   sortValue: string = "all";
 
-  constructor(private projectService: ProjectService, private router: Router) {
-    this.projectService.getProjects().subscribe(projectArray => {
-      projectArray.forEach(project => {
-        let newProject = new Project(project.name, project.description, project.owners, project.goal, project.rewards, project.currentAmount, project.$key);
-        this.projects.push(newProject);
-      })
-    });
+  constructor(private projectService: ProjectService, private router: Router) { }
+
+  ngOnInit() {
+    this.projects = this.projectService.getProjects();
   }
 
   setSortValue(value: string) {
     this.sortValue = value;
-  }
-
-  goToDetailPage(clickedProject) {
-    this.router.navigate(['projects', clickedProject.id])
   }
 
 }

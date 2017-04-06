@@ -2,36 +2,38 @@
   <div class="panel-heading">
     <h3 class="panel-title">Add New Project!</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body form-group">
     <label>Project Name</label>
-    <input #newName>
+    <input #newName class="form-control">
 
     <label>Description</label>
-    <input #newDescription>
+    <input #newDescription class="form-control">
 
     <label>Owners</label>
-    <input #newOwner>
-    <button (click)="addOwner(newOwner.value); newOwner.value='';">Add Owner</button>
-    <div *ngIf="owners">
+    <input #newOwner class="form-control">
+    <button (click)="addOwner(newOwner.value); newOwner.value='';" class="btn btn-primary">Add Owner</button>
+    <div *ngIf="owners[0]">
       <h4>Owners:</h4>
       <ul>
         <li *ngFor="let owner of owners">{{owner}}</li>
       </ul>
     </div>
+    <br>
 
     <label>Goal</label>
-    <input #newGoal>
+    <input #newGoal class="form-control">
 
     <label>Rewards</label>
-    <input #newReward>
-    <button (click)="addReward(newReward.value); newReward.value='';">Add Reward</button>
-    <div *ngIf="rewards">
+    <input #newReward class="form-control">
+    <button (click)="addReward(newReward.value); newReward.value='';" class="btn btn-primary">Add Reward</button>
+    <div *ngIf="rewards[0]">
       <h4>Rewards:</h4>
       <ul>
         <li *ngFor="let reward of rewards">{{reward}}</li>
       </ul>
     </div>
+    <br>
 
-    <button (click)="submitForm(newName.value, newDescription.value, newGoal.value); newName.value=''; newDescription.value=''; newGoal.value='';">Add</button>
+    <button (click)="submitForm(newName.value, newDescription.value, newGoal.value); newName.value=''; newDescription.value=''; newGoal.value='';" class="btn btn-success">Create Event</button>
 </div>
 </div>

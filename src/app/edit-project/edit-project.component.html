@@ -1,0 +1,42 @@
+<button (click)="setEditMode(true)" class="btn btn-warning">Edit Project</button>
+<div *ngIf="editMode" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Edit Project!</h3>
+  </div>
+  <div class="panel-body form-group">
+    <label>Project Name</label>
+    <input [(ngModel)]="project.name" class="form-control">
+    <br>
+
+    <label>Description</label>
+    <input [(ngModel)]="project.description" class="form-control">
+    <br>
+
+    <label>Owners</label>
+    <input #newOwner class="form-control">
+    <button (click)="addOwner(newOwner.value); newOwner.value='';" class="btn btn-primary">Add Owner</button>
+    <div *ngIf="project.owners">
+      <h4>Owners:</h4>
+      <ul>
+        <li *ngFor="let owner of project.owners">{{owner}}</li>
+      </ul>
+    </div>
+    <br>
+
+    <label>Goal</label>
+    <input [(ngModel)]="project.goal" class="form-control">
+    <br>
+
+    <label>Rewards</label>
+    <input #newReward class="form-control">
+    <button (click)="addReward(newReward.value); newReward.value='';" class="btn btn-primary">Add Reward</button>
+    <div *ngIf="project.rewards">
+      <h4>Rewards:</h4>
+      <ul>
+        <li *ngFor="let reward of project.rewards">{{reward}}</li>
+      </ul>
+    </div>
+
+    <button (click)="submitForm()" class="btn btn-success">Done Editing</button>
+  </div>
+</div>

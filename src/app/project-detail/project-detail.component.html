@@ -11,7 +11,7 @@
           </ul>
         </li>
         <li>{{(project | async)?.description}}</li>
-        <li>{{(project | async)?.currentAmount}}/{{(project | async)?.goal}}</li>
+        <li>${{(project | async)?.currentAmount}}/${{(project | async)?.goal}}</li>
         <li><h4>Rewards:</h4>
           <ul>
             <li *ngFor='let reward of (project | async)?.rewards'>{{reward}}</li>
